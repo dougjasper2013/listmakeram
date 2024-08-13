@@ -1,7 +1,9 @@
 package com.trios2024amdj.listmaker.ui.main
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.trios2024amdj.listmaker.databinding.ListSelectionViewHolderBinding
 
 class ListSelectionRecyclerViewAdapter :
     RecyclerView.Adapter<ListSelectionViewHolder>() {
@@ -9,7 +11,10 @@ class ListSelectionRecyclerViewAdapter :
     val listTitles = arrayOf("Shopping List", "Chores", "Android Tutorials")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListSelectionViewHolder {
-        TODO("Not yet implemented")
+        val binding =
+            ListSelectionViewHolderBinding.inflate(LayoutInflater.from(parent.context),
+                parent, false)
+        return ListSelectionViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -17,7 +22,8 @@ class ListSelectionRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: ListSelectionViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.itemNumber.text = (position + 1).toString()
+        holder.binding.itemString.text = listTitles[position]
     }
 
 }
