@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
-import com.trios2024amdj.listmaker.ui.detail.R
+import com.trios2024amdj.listmaker.R
 
 class ListDetailFragment : Fragment() {
 
@@ -15,7 +16,7 @@ class ListDetailFragment : Fragment() {
         fun newInstance() = ListDetailFragment()
     }
 
-    private val viewModel: ListDetailViewModel by viewModels()
+    private lateinit var viewModel: ListDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,9 @@ class ListDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+        viewModel =
+            ViewModelProvider(requireActivity()).get(ListDetailViewModel::class.java)
         return inflater.inflate(R.layout.list_detail_fragment, container, false)
     }
 
