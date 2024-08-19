@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.trios2024amdj.listmaker.R
+import com.trios2024amdj.listmaker.databinding.ListDetailFragmentBinding
 
 class ListDetailFragment : Fragment() {
 
@@ -16,6 +17,7 @@ class ListDetailFragment : Fragment() {
         fun newInstance() = ListDetailFragment()
     }
 
+    lateinit var binding: ListDetailFragmentBinding
     private lateinit var viewModel: ListDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,9 @@ class ListDetailFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         viewModel =
             ViewModelProvider(requireActivity()).get(ListDetailViewModel::class.java)
-        return inflater.inflate(R.layout.list_detail_fragment, container, false)
+        binding = ListDetailFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+        // return inflater.inflate(R.layout.list_detail_fragment, container, false)
     }
 
 }
