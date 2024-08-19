@@ -72,7 +72,7 @@ class ListDetailActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putExtras(bundle)
         setResult(Activity.RESULT_OK, intent)
-        
+
         super.onBackPressed()
     }
 
