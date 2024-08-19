@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.trios2024amdj.listmaker.R
 import com.trios2024amdj.listmaker.databinding.ListDetailFragmentBinding
@@ -34,6 +35,16 @@ class ListDetailFragment : Fragment() {
         viewModel =
             ViewModelProvider(requireActivity()).get(ListDetailViewModel::class.java)
         binding = ListDetailFragmentBinding.inflate(inflater, container, false)
+
+        val recyclerAdapter = ListItemsRecyclerViewAdapter(viewModel.list)
+        binding.listItemsRecyclerview.adapter = recyclerAdapter
+        binding.listItemsRecyclerview.layoutManager =
+            LinearLayoutManager(requireContext())
+
+        viewModel.onTaskAdded = {
+            recyclerAdapter.notifyDataSetChanged()
+        }
+
         return binding.root
         // return inflater.inflate(R.layout.list_detail_fragment, container, false)
     }
